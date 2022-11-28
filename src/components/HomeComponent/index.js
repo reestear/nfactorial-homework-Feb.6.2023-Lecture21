@@ -8,6 +8,7 @@ class Home extends React.Component {
         super();
 
         this.state = {
+            count: 0,
             content: '',
             tweets: [
                 {
@@ -128,12 +129,12 @@ class Home extends React.Component {
             <div className="w-50 mt-3">
                 <h5 className="mx-3">Home</h5>
                 <NewTweet content={content} onChangeTextInput={this.onChangeTextInput} onTweet={this.addToTweets}/>
-                <div>
-                    <button onClick={()=>this.filterTweetsByTopic('politics')}>Politics</button>
+                {/* <div>
+                    <button onClick={()=>this.filterTweetsByTopic('politics')}>{`Politics ${this.state.count}`}</button>
                     <button onClick={()=>this.filterTweetsByTopic('education')}>Education</button>
                     <button onClick={()=>this.filterTweetsByTopic('blabla')}>Blabla</button>
-                </div>
-                <TweetsList tweets={this.state.filteredTweets} deleteTweet={this.deleteTweet}/>
+                </div> */}
+                <TweetsList tweets={tweets} deleteTweet={this.deleteTweet}/>
             </div>
         )
     }
