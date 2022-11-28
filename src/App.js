@@ -4,7 +4,7 @@ import SideMenu from './components/SideMenuComponent';
 
 function App() {
   return (
-    <div className="App d-flex mx-5">
+    <div className="App d-flex flex-row">
       <SideMenu/>
       <div className='vertical-divider'></div>
       <Home/>

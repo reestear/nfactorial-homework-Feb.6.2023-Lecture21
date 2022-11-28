@@ -28,7 +28,7 @@ export default function SideMenu(){
 
 
     return (
-        <div className="w-25 mt-3 mx-5 side-menu">
+        <div className="mt-3 side-menu">
             <img src={require('./images/twitter.png')} className="logo-icon mb-2"/>
             {menu.map((item, index)=> <MenuItem item={item} key={index}/>)}
         </div>

@@ -1,14 +1,13 @@
 import { useState } from 'react';
 import { COMMENTS, LIKES, RETWEETS, SHARE } from '../images';
 
-
 export default function Tweet( tweet ){
 
     const [title, setTitle] = useState(tweet.content);
 
     return (
         <div className='mt-3 px-3'  style={{borderBottom: '2px solid whitesmoke'}}>
-            <p className='mx-5' style={{fontSize:13, fontWeight:'600'}}>You might like! <span style={{color:'blue'}}>See more</span></p>
+            <p className='mx-5' style={{fontSize:13, fontWeight:'600'}}>You might like! <span style={{color:'#1D9BF0'}}>See more</span></p>
             <div className='d-flex'>
                 <img src={tweet.img} style={{width:50, height:50, borderRadius:50}}/>
                 <div className='mx-3'>
