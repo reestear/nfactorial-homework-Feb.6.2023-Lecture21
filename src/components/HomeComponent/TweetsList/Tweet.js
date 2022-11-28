@@ -1,13 +1,18 @@
 import { useState } from 'react';
 import { COMMENTS, LIKES, RETWEETS, SHARE, DELETE } from '../images';
 
-export default function Tweet( tweet ){
+export default function Tweet( { tweet, deleteTweet }){
     const [title, setTitle] = useState(tweet.content);
 
     return (
         <div className='mt-3 px-3'  style={{borderBottom: '2px solid whitesmoke'}}>
-            <p className='mx-5' style={{fontSize:13, fontWeight:'600'}}>You might like! <span style={{color:'#1D9BF0'}}>See more</span></p>
+            <p className='mx-5 d-flex' style={{fontSize:12, fontWeight:'600'}}>
+                You might like! 
+                <span style={{color:'#1D9BF0'}}>See more  </span>
+                <p>{tweet.minutes ? tweet.minutes: 'Long time ago'}</p>
+            </p>
             
+
             <div className='d-flex justify-content-between'>
                 <div className='d-flex'>
                     <img src={tweet.img} style={{width:50, height:50, borderRadius:50}}/>
@@ -16,9 +21,9 @@ export default function Tweet( tweet ){
                         <p>{title.length>200 ? title.slice(0, 200) + '...' : title}</p>
                     </div>
                 </div>
-                <div style={{width: 20, height: 20}}>
+                <button onClick={()=>deleteTweet(tweet.id)} style={{width: 35, height: 35, border:'none', backgroundColor:'transparent'}}>
                     {DELETE}
-                </div>
+                </button>
             </div>
 
             <div className='d-flex m-auto justify-content-between' style={{width:'80%'}}>
