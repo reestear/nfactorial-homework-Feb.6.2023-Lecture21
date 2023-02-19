@@ -5,7 +5,7 @@ export default function Tweet( { tweet, deleteTweet }){
     const [title, setTitle] = useState(tweet.content);
 
     return (
-        <div className='mt-3 px-3'  style={{borderBottom: '2px solid whitesmoke'}}>
+        <div className='mt-3 px-3'  style={{borderBottom: '2px solid whitesmoke', width: '650px'}}>
             <p className='mx-5 d-flex' style={{fontSize:12, fontWeight:'600'}}>
                 You might like! 
                 <span style={{color:'#1D9BF0'}}>See more  </span>

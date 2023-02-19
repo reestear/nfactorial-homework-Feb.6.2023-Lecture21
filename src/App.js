@@ -8,7 +8,6 @@ function App() {
       <SideMenu/>
       <div className='vertical-divider'></div>
       <Home/>
-      <div className='vertical-divider'></div>
     </div>
   );
 }

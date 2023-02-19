@@ -1,6 +1,7 @@
 import React from "react";
 import NewTweet from "./NewTweet";
 import TweetsList from "./TweetsList";
+import RightBar from "./RightBar";
 import { KZ_IMG_PATH, NFACTORIAL_IMG_PATH, PROFILE_IMG_PATH} from './images';
 
 class Home extends React.Component {
@@ -10,6 +11,7 @@ class Home extends React.Component {
         this.state = {
             count: 0,
             content: '',
+            searchFor: '',
             tweets: [
                 {
                     id: 0,
@@ -89,11 +91,30 @@ class Home extends React.Component {
         })
     }
 
+    onChangeSearchFor = (e) => {
+        this.setState({
+            searchFor: e.target.value
+        })
+        // console.log(this.state.searchFor)
+    }
+
+    onClickSearchFor = (e) => {
+        if(e.key === 'Enter'){
+            let {searchFor, tweets, filteredTweets} = this.state;
+            console.log('return pressed')
+            console.log(`the searchFor value is |${searchFor}|`)
+
+            this.setState({
+                filteredTweets: tweets.filter(item => item.topic === searchFor)
+            })
+        }
+    }
+
     addToTweets = () => {
         const newTweet = {
             id: this.state.tweets.length,
-            authorName: 'Aruzhan',
-            authorUsername: '@azhaubassar',
+            authorName: 'Ruslan',
+            authorUsername: '@ruslahn',
             img: PROFILE_IMG_PATH,
             content: this.state.content,
             replies: 0,
@@ -103,7 +124,9 @@ class Home extends React.Component {
         }
 
         this.setState({
-            tweets: [...this.state.tweets, newTweet ],
+            tweets: [newTweet, ...this.state.tweets],
+            filteredTweets: [newTweet, ...this.state.tweets],
+            searchFor: '',
             content: ''
         })
     }
@@ -121,20 +144,35 @@ class Home extends React.Component {
             filteredTweets: this.state.tweets.filter(item=>item.topic === topic)
         })
     }
+
+    clearSearch = () => {
+        const {tweets} = this.state
+
+        this.setState({
+            filteredTweets: tweets,
+            searchFor: ''
+        })
+    }
  
     render(){
-        const { tweets, content } = this.state;
+        const { tweets, content, searchFor, filteredTweets} = this.state;
 
         return(
-            <div className="w-50 mt-3">
-                <h5 className="mx-3">Home</h5>
-                <NewTweet content={content} onChangeTextInput={this.onChangeTextInput} onTweet={this.addToTweets}/>
-                {/* <div>
-                    <button onClick={()=>this.filterTweetsByTopic('politics')}>{`Politics ${this.state.count}`}</button>
-                    <button onClick={()=>this.filterTweetsByTopic('education')}>Education</button>
-                    <button onClick={()=>this.filterTweetsByTopic('blabla')}>Blabla</button>
-                </div> */}
-                <TweetsList tweets={tweets} deleteTweet={this.deleteTweet}/>
+            <div className="d-flex">
+                <div className="mt-3" style={{width: '650px'}}>
+                    <h5 className="mx-3">Home</h5>
+                    <NewTweet content={content} onChangeTextInput={this.onChangeTextInput} onTweet={this.addToTweets}/>
+                    {/* <div>
+                        <button onClick={()=>this.filterTweetsByTopic('politics')}>{`Politics ${this.state.count}`}</button>
+                        <button onClick={()=>this.filterTweetsByTopic('education')}>Education</button>
+                        <button onClick={()=>this.filterTweetsByTopic('blabla')}>Blabla</button>
+                    </div> */}
+                    <TweetsList tweets={filteredTweets} deleteTweet={this.deleteTweet}/>
+                </div>
+                <div className='vertical-divider'></div>
+                <div>
+                    <RightBar clearSearch = {this.clearSearch} onClickSearchFor = {this.onClickSearchFor} onChangeSearchFor = {this.onChangeSearchFor} searchFor = {searchFor}/>
+                </div>
             </div>
         )
     }

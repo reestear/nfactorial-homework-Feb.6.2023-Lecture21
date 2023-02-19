@@ -1,0 +1,33 @@
+
+.search-button{
+    display: flex;
+    background-color:rgb(240, 240, 240);
+    width: 250px;
+    height: 40px;
+
+    border-radius: 20px;
+    margin-top: 5px;
+    margin-left: 5px;
+
+}
+
+input::placeholder{
+    color:rgb(60, 60, 60)
+}
+
+.Input{
+    color:rgb(60, 60, 60)
+}
+
+.Clear-Button{
+    width: 50%;
+    height: 40px;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-left: 5px;
+
+    outline: none;
+    border: none;
+
+    background-color: rgb(106, 185, 255);
+}
